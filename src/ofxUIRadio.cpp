@@ -24,12 +24,12 @@
 
 #include "ofxUIRadio.h"
 
-ofxUIRadio::ofxUIRadio(string _name, vector<string> names, int _orientation, float w, float h, float x, float y, int _size) : ofxUIWidget()
+ofxUIRadio::ofxUIRadio(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x, float y, int _size) : ofxUIWidget()
 {
-    init(_name, names, _orientation, w, h, x, y, _size);
+    init(_name, names, _active, _orientation, w, h, x, y, _size);
 }
 
-void ofxUIRadio::init(string _name, vector<string> names, int _orientation, float w, float h, float x, float y, int _size)
+void ofxUIRadio::init(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x, float y, int _size)
 {
     initRect(x,y,w,h);
     name = string(_name);
@@ -39,6 +39,8 @@ void ofxUIRadio::init(string _name, vector<string> names, int _orientation, floa
     orientation = _orientation;
     
     value = -1;
+    active = NULL;
+	defaultName = "";
     
     if(names.size() == 0)
     {
@@ -52,10 +54,14 @@ void ofxUIRadio::init(string _name, vector<string> names, int _orientation, floa
             ofxUIToggle *toggle = new ofxUIToggle(tname, false, w, h, 0, 0, _size);
             addEmbeddedWidget(toggle);
             toggles.push_back(toggle);            
+			if (tname == _active) {
+				toggle->setValue(true);
+				active = toggle;
+				value = i;
+				defaultName = tname;
+			}
         }
     }
-    
-    active = NULL;
 }
 
 void ofxUIRadio::setVisible(bool _visible)
@@ -180,4 +186,38 @@ string ofxUIRadio::getActiveName()
         return active->getName();
     }
     return ""; 
+}
+
+void ofxUIRadio::setDefaultName(string _name)
+{
+    defaultName = _name;
+}
+
+string ofxUIRadio::getDefaultName()
+{
+    return defaultName;
+}
+
+void ofxUIRadio::resetActive()
+{
+	activateToggle(defaultName);
+}
+
+void ofxUIRadio::randomizeActive()
+{
+	unsigned int randIndex = ofRandom(0, toggles.size());
+	for(unsigned int i = 0; i < toggles.size(); i++)
+	{
+		ofxUIToggle *t = toggles[i];
+		if (i == randIndex)
+		{
+			t->setValue(true);
+            active = t;
+            value = i;
+		}
+        else
+        {
+            t->setValue(false);
+        }
+	}
 }

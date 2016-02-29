@@ -39,6 +39,7 @@ void ofxUITextInput::init(string _name, string _textstring, float w, float h, fl
     textstring = string(_textstring);
     defaultstring = string(_textstring);
     displaystring = string(_textstring);
+	defaultTextString = textstring;
     
     clicked = false;                                            //the widget's value
     autoclear = true;
@@ -540,3 +541,18 @@ void ofxUITextInput::loadState(ofxXmlSettings *XML)
 }
 
 #endif
+
+void ofxUITextInput::setDefaultTextString(string s)
+{
+    defaultTextString = s;
+}
+
+string ofxUITextInput::getDefaultTextString()
+{
+    return defaultTextString;
+}
+
+void ofxUITextInput::resetTextString()
+{
+	setTextString(defaultTextString);
+}

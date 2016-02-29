@@ -42,7 +42,7 @@ public:
     bool isMinified();
     void toggleMinified();
     ofxUILabel *getCanvasTitle();
-    void autoSizeToFitWidgets(); 
+    void autoSizeToFitWidgets();
 
 #ifdef OFX_UI_TARGET_TOUCH
     virtual void touchDown(float x, float y, int id);

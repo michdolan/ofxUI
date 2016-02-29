@@ -87,7 +87,8 @@ void ofxUISlider_<T>::init(string _name, T _min, T _max, T *_value, float w, flo
     {
         value = min;
     }
-    
+
+	defaultValue = value;
     value = ofxUIMap(value, min, max, 0.0, 1.0, true);    
     valueString = ofxUIToString(getScaledValue(),labelPrecision);
     
@@ -628,6 +629,30 @@ void ofxUISlider_<T>::loadState(ofxXmlSettings *XML)
 {
     T value = XML->getValue("Value", getValue(), 0);
     setValue(value);
+}
+
+template<typename T>
+void ofxUISlider_<T>::setDefaultValue(T _defaultValue)
+{
+    defaultValue = _defaultValue;
+}
+
+template<typename T>
+T ofxUISlider_<T>::getDefaultValue()
+{
+    return defaultValue;
+}
+
+template<typename T>
+void ofxUISlider_<T>::resetValue()
+{
+	setValue(defaultValue);
+}
+
+template<typename T>
+void ofxUISlider_<T>::randomizeValue()
+{
+	setValue(ofRandom(min, max));
 }
 
 #endif

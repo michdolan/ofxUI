@@ -63,6 +63,10 @@ public:
     virtual void loadState(ofxXmlSettings *XML);
 #endif    
 
+	void setDefaultTextString(string s);
+	string getDefaultTextString();
+	void resetTextString();
+
 protected:
 	string textstring; 
 	string defaultstring; 
@@ -78,6 +82,7 @@ protected:
 	int inputTriggerType;
     int maxsize;
     bool triggerOnClick;
+	string defaultTextString;
     
     unsigned int cursorPosition;
     unsigned int firstVisibleCharacterIndex;

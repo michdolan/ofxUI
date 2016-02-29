@@ -31,8 +31,8 @@
 class ofxUIRadio : public ofxUIWidget
 {
 public:
-    ofxUIRadio(string _name, vector<string> names, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
-    void init(string _name, vector<string> names, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
+    ofxUIRadio(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
+    void init(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
     void setVisible(bool _visible);
 	void activateToggle(string _name);
     void triggerSelf();
@@ -43,10 +43,16 @@ public:
     int getValue();
 	void triggerEvent(ofxUIWidget *child);
     ofxUIToggle *addToggle(ofxUIToggle *toggle);
+
+	void setDefaultName(string _name);
+	string getDefaultName();
+	void resetActive();
+	void randomizeActive();
     
 protected:
     int value; 
 	int orientation; 
 	vector<ofxUIToggle *> toggles; 		
     ofxUIToggle *active;     
+	string defaultName;
 }; 

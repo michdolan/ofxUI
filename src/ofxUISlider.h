@@ -91,13 +91,18 @@ public:
     
     ofxUIVec2f getMaxAndMin();
     void setMaxAndMin(T _max, T _min, bool bKeepValueTheSame = false);
-    
+
     bool isDraggable();
     virtual bool hasState(){ return true; };
 #ifndef OFX_UI_NO_XML
     virtual void saveState(ofxXmlSettings *XML);
     virtual void loadState(ofxXmlSettings *XML);
 #endif    
+
+	void setDefaultValue(T _defaultValue);
+    T getDefaultValue();
+	void resetValue();
+	void randomizeValue();
     
 protected:
     bool bSticky;
@@ -111,6 +116,7 @@ protected:
     int labelPrecision;
     int orientation;
     string valueString;
+	T defaultValue;
 };
 
 typedef ofxUISlider_<int> ofxUIIntSlider;

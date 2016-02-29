@@ -1567,14 +1567,14 @@ ofxUIFPSSlider* ofxUICanvas::addFPSSlider(string _name, float w, float h, float 
     return widget;
 }
 
-ofxUIRadio* ofxUICanvas::addRadio(string _name, vector<string> names, int _orientation, int _size) {
-    ofxUIRadio* widget = new ofxUIRadio(_name, names, _orientation, globalButtonDimension, globalButtonDimension, 0, 0, _size);
+ofxUIRadio* ofxUICanvas::addRadio(string _name, vector<string> names, string _active, int _orientation, int _size) {
+    ofxUIRadio* widget = new ofxUIRadio(_name, names, _active, _orientation, globalButtonDimension, globalButtonDimension, 0, 0, _size);
     addWidgetPosition(widget, widgetPosition, widgetAlign);
     return widget;
 }
 
-ofxUIRadio* ofxUICanvas::addRadio(string _name, vector<string> names, int _orientation, float w, float h, float x, float y, int _size) {
-    ofxUIRadio* widget = new ofxUIRadio(_name, names, _orientation, w, h, x, y, _size);
+ofxUIRadio* ofxUICanvas::addRadio(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x, float y, int _size) {
+    ofxUIRadio* widget = new ofxUIRadio(_name, names, _active, _orientation, w, h, x, y, _size);
     addWidgetPosition(widget, widgetPosition, widgetAlign);
     return widget;
 }

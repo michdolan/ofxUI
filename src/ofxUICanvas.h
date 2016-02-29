@@ -176,8 +176,8 @@ public:
     ofxUIFPSSlider* addFPSSlider(string _name, float _max = 400);
     ofxUIFPSSlider* addFPSSlider(string _name, float w, float h, float _max = 400, float x = 0, float y = 0);
     
-    ofxUIRadio* addRadio(string _name, vector<string> names, int _orientation = OFX_UI_ORIENTATION_VERTICAL, int _size = OFX_UI_FONT_SMALL);
-    ofxUIRadio* addRadio(string _name, vector<string> names, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
+    ofxUIRadio* addRadio(string _name, vector<string> names, string _active, int _orientation = OFX_UI_ORIENTATION_VERTICAL, int _size = OFX_UI_FONT_SMALL);
+    ofxUIRadio* addRadio(string _name, vector<string> names, string _active, int _orientation, float w, float h, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
     
     ofxUIButton* addButton(string _name, bool _value);
     ofxUIButton* addButton(string _name, bool _value, float w, float h, float x = 0, float y = 0);

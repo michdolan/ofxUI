@@ -47,4 +47,12 @@ public:
     virtual void saveState(ofxXmlSettings *XML);
     virtual void loadState(ofxXmlSettings *XML);
 #endif
+
+	void setDefaultValue(bool _defaultValue);
+	bool getDefaultValue();
+	void resetValue();
+	void randomizeValue();
+
+private:
+	bool defaultValue;
 };

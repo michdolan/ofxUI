@@ -34,12 +34,14 @@ ofxUIToggle::ofxUIToggle(string _name, bool _value, float w, float h, float x, f
 : ofxUIButton( _name, _value, w, h, x, y, _size )
 {
     kind = OFX_UI_WIDGET_TOGGLE;
+	defaultValue = _value;
 }
 
 ofxUIToggle::ofxUIToggle(string _name, bool *_value, float w, float h, float x, float y, int _size)
 : ofxUIButton( _name, _value, w, h, x, y, _size )
 {
     kind = OFX_UI_WIDGET_TOGGLE;
+	defaultValue = _value;
 }
 
 void ofxUIToggle::setDrawPadding(bool _draw_padded_rect)
@@ -154,6 +156,35 @@ void ofxUIToggle::loadState(ofxXmlSettings *XML)
 {
     int value = XML->getValue("Value", (getValue() ? 1 : 0), 0);
     setValue((value ? 1 : 0));
+
+	// If toggled and child of radio, activate parent
+	if (value) {
+		ofxUIWidget *parent = getParent();
+		if (parent && parent->getKind() == OFX_UI_WIDGET_RADIO) {
+			ofxUIRadio *radio = static_cast<ofxUIRadio *>(parent);
+			radio->activateToggle(getName());
+		}
+	}
 }
 
 #endif
+
+void ofxUIToggle::setDefaultValue(bool _defaultValue)
+{
+    defaultValue = _defaultValue;
+}
+
+bool ofxUIToggle::getDefaultValue()
+{
+    return defaultValue;
+}
+
+void ofxUIToggle::resetValue()
+{
+    setValue(defaultValue);
+}
+
+void ofxUIToggle::randomizeValue()
+{
+    setValue(ofRandom(0.0f, 1.0f) < 0.5f);
+}
